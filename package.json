@@ -2,10 +2,12 @@
   "name": "daily-coding-problems",
   "version": "1.0.0",
   "description": "Solutions to daily coding problems. See https://www.dailycodingproblem.com/ for reference",
-  "dependencies": {
-    "eslint": "^5.15.3"
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^5.15.3",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
