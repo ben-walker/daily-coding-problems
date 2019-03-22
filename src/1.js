@@ -16,10 +16,10 @@ const addToK = (list, k) => {
   return check;
 };
 
-addToK([10, 15, 3, 7], 17); // true
-addToK([], 17); // false
-addToK([17], 17); // false
-addToK([17, 0], 17); // true
-addToK([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], 17); // true
-addToK([0, 0], 0); // true
-addToK([15, 2, 3, 0, -1, 2, 3, -5], -6); // true
+console.assert(addToK([10, 15, 3, 7], 17));
+console.assert(!addToK([], 17));
+console.assert(!addToK([17], 17));
+console.assert(addToK([17, 0], 17));
+console.assert(addToK([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], 17));
+console.assert(addToK([0, 0], 0));
+console.assert(addToK([15, 2, 3, 0, -1, 2, 3, -5], -6));

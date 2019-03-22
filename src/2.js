@@ -17,5 +17,7 @@ const prodArray = (ogArray) => {
   return prods;
 };
 
-prodArray([1, 2, 3, 4, 5]); // [120, 60, 40, 30, 24]
-prodArray([3, 2, 1]); // [2, 3, 6]
+console.assert(JSON.stringify(prodArray([1, 2, 3, 4, 5]))
+  === JSON.stringify([120, 60, 40, 30, 24]));
+console.assert(JSON.stringify(prodArray([3, 2, 1]))
+  === JSON.stringify([2, 3, 6]));
