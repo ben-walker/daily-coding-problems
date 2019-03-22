@@ -21,12 +21,31 @@ class Node {
   }
 
   serialize() {
+    this.treeComponents = [];
 
+    const serializor = (node) => {
+      if (node) {
+        this.treeComponents.push(node.val);
+        serializor(node.left);
+        serializor(node.right);
+      } else this.treeComponents.push('#');
+    };
+    serializor(this);
+    return this.treeComponents.join(' ');
   }
 
   static deserialize(serialTree) {
-
+    const deserializor = (treeComponents) => {
+      const comp = treeComponents.shift();
+      if (comp === '#') return null;
+      const node = new Node(comp);
+      node.left = deserializor(treeComponents);
+      node.right = deserializor(treeComponents);
+      return node;
+    };
+    return deserializor(serialTree.split(' '));
   }
 }
 
 const node = new Node('root', new Node('left', new Node('left.left')), new Node('right'));
+console.assert(Node.deserialize(node.serialize()).left.left.val === 'left.left');
