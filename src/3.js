@@ -13,6 +13,9 @@ The following test should pass:
 node = Node('root', Node('left', Node('left.left')), Node('right'))
 assert deserialize(serialize(node)).left.left.val == 'left.left' */
 
+/* Implementation */
+const nullNode = '#';
+
 class Node {
   constructor(val, left = null, right = null) {
     this.val = val;
@@ -23,24 +26,25 @@ class Node {
   serialize() {
     const serializor = (node) => {
       if (node) {
-        this.treeComponents.push(node.val);
-        serializor(node.left);
-        serializor(node.right);
-      } else this.treeComponents.push('#');
+        this.treeElements.push(node.val);
+        serializor(node.left); // serialize the entire left branch...
+        serializor(node.right); // before serializing the right branch
+      } else this.treeElements.push(nullNode); // null node found
     };
 
-    this.treeComponents = [];
+    this.treeElements = []; // array of serialized tree elements
     serializor(this);
-    return this.treeComponents.join(' ');
+    return this.treeElements.join(' ');
   }
 
   static deserialize(serialTree) {
-    const deserializor = (treeComponents) => {
-      const comp = treeComponents.shift();
-      if (comp === '#') return null;
-      const node = new Node(comp);
-      node.left = deserializor(treeComponents);
-      node.right = deserializor(treeComponents);
+    const deserializor = (treeElements) => {
+      const element = treeElements.shift();
+      if (element === nullNode) return null;
+      const node = new Node(element); // form a new node from the serialized value
+      // build this new node's left and right branches
+      node.left = deserializor(treeElements);
+      node.right = deserializor(treeElements);
       return node;
     };
 
@@ -48,5 +52,6 @@ class Node {
   }
 }
 
+/* Testing */
 const node = new Node('root', new Node('left', new Node('left.left')), new Node('right'));
 console.assert(Node.deserialize(node.serialize()).left.left.val === 'left.left');
