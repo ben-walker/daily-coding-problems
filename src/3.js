@@ -21,8 +21,6 @@ class Node {
   }
 
   serialize() {
-    this.treeComponents = [];
-
     const serializor = (node) => {
       if (node) {
         this.treeComponents.push(node.val);
@@ -30,6 +28,8 @@ class Node {
         serializor(node.right);
       } else this.treeComponents.push('#');
     };
+
+    this.treeComponents = [];
     serializor(this);
     return this.treeComponents.join(' ');
   }
@@ -43,6 +43,7 @@ class Node {
       node.right = deserializor(treeComponents);
       return node;
     };
+
     return deserializor(serialTree.split(' '));
   }
 }
