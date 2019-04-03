@@ -19,7 +19,7 @@ def decodings(msg):
     count = 0
     for code in valid_codes:
         if msg.startswith(code):
-            count += decodings(msg[len(code):])
+            count += decodings(msg.replace(code, '', 1))
     return count
 
 # Testing
