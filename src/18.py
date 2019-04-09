@@ -16,12 +16,12 @@ compute them.
 
 
 def max_subarray_vals(array, k):
-    k_stack = []  # this list never holds more than k values; i.e. O(k) space
+    sub = []  # this list never holds more than k values; i.e. O(k) space
     for val in array:  # we only iterate over the array once; i.e. O(n) time
-        k_stack.append(val)
-        if len(k_stack) == k:
-            print(max(k_stack))
-            k_stack = k_stack[1:]  # remove first value
+        sub.append(val)
+        if len(sub) == k:
+            print(max(sub))
+            del sub[0]  # remove first value
 
 # Testing
 max_subarray_vals([10, 5, 2, 7, 8, 7], 3)
